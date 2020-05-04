@@ -1,0 +1,87 @@
+extends ../layout.pug
+
+block prepend styles
+    link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+    div(class='breadcrumb')
+        li Додавання товару в колекцію
+    form(id='shop-add-form' name='shop-add-form' class='form-inline' action='/addGoods' method='POST')
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='name') Код
+            div(class='col-md-9')
+                input(id='name' name='code' value='' class='form-control')
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='name') Назва
+            div(class='col-md-9')
+                input(id='' name='name' value='' class='form-control')
+        div(class='form-group')
+            div(class='col-md-3')
+                label(for='name') Маса
+            div(class='col-md-9')
+                input(id='Mass' name='mass' value='' class='form-control')
+        div(class='form-group')
+            div(class='col-md-12')
+                button(type='submit' class='btn btn-primary') Додати
+        h4= info
+    div(class='breadcrumb')
+        li Редагування товару в колекції
+    form(id='shop-edit-form' name='shop-add-form' class='form-inline' action='/editGoods' method='POST')
+        div(class='')
+            div(class='col-md-3')
+                label(for='') Товари
+            div(class='col-md-6')
+                select#OurShipEdit(name = 'index')
+                    each val, index in goods
+                        option= index + '. Код: ' + val.code + '. Назва: ' + val.name + '. Mass: ' + val.mass
+        div
+            div(class='form-group')
+
+                div(class='col-md-3')
+                    label(for='name') Нова назва
+                div(class='col-md-9')
+                    input( name='name' value='' class='form-control')
+            div(class='form-group')
+                div(class='col-md-3')
+                    label(for='name') Нова маса
+                div(class='col-md-9')
+                    input( name='mass' value='' class='form-control')
+            div(class='form-group')
+                div(class='col-md-12')
+                    button(type='submit' class='btn btn-primary') Редагувати
+
+    div(class='breadcrumb')
+        li Видалення товару з колекції
+    form(id='shop-delete-form' name='shop-add-form' class='form-inline' action='/deleteGoods' method='POST')
+        div(class='')
+            div(class='col-md-3')
+                label(for='') Товар
+            div(class='col-md-6')
+                select(name = 'index')
+                    each val, index in goods
+                        option= index + '. Код: ' + val.code + '. Назва: ' + val.name + '. Mass: ' + val.mass
+                button(type='submit' class='btn btn-primary') Видалити
+                p= info
+
+    div(class='breadcrumb')
+        li Пошук одного товару в колекції
+    form(id='shop-find-form' name='shop-add-form' class='form-inline' action='/findGoods' method='POST')
+        div(class='')
+            div(class='form-group')
+
+                div(class='col-md-3')
+                    label(for='') Код
+                div(class='col-md-9')
+                    input( name='code' value='' class='form-control')
+
+            div(class='form-group')
+                div(class='col-md-12')
+                    button(type='submit' class='btn btn-primary') Пошук
+            p= find
+
+block append scripts
+    script(src='/static/js/models/shop.js')
+    script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+    script(src='/static/js/views/shop.js')

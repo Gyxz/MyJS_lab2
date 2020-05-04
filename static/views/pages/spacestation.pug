@@ -1,0 +1,91 @@
+extends ../layout.pug
+
+block prepend styles
+  link(rel='stylesheet' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css')
+
+block content
+  div(class='breadcrumb')
+    li Додавання нової станції в колекцію
+  form(id='spacestation-add-form' name='spacestation-add-form' class='form-inline' action='/addSpaceStation' method='POST')
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Назва
+      div(class='col-md-9')
+        input(id='name' name='name' value='' class='form-control')
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Місткість
+      div(class='col-md-9')
+        input(id='capacity' name='capacity' value='' class='form-control') 
+    div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Потреби
+      div(class='col-md-9')
+        input(id='needs' name='needs' value='' class='form-control')       
+    div(class='form-group')
+      div(class='col-md-12')
+        button(type='submit' class='btn btn-primary') Створити
+  br
+  div(class='breadcrumb')
+    li Редагування станції в колекції
+  form(id='spacestation-edit-form' name='spacestation-add-form' class='form-inline' action='/editSpaceStation' method='POST')
+    div(class='')
+      div(class='col-md-3')
+        label(for='') Станція
+      div(class='col-md-6')
+        select#OurShipEdit(name = 'index')
+          each val, index in dataSpaceStation
+            option= index + '. Назва: ' + val.name + '. Місткість: ' + val.capacity + '. Потреби: ' + val.needs
+    div
+      div(class='form-group')
+        div(class='col-md-3')
+          label(for='name') Нова Назва
+        div(class='col-md-9')
+          input( name='name' value='' class='form-control')
+      div(class='form-group')
+        div(class='col-md-3')
+          label(for='name') Нова Місткість
+        div(class='col-md-9')
+          input( name='capacity' value='' class='form-control')
+      div(class='form-group')
+        div(class='col-md-3')
+          label(for='name') Нові Потреби
+        div(class='col-md-9')
+          input( name='Needs' value='' class='form-control')
+      div(class='form-group')
+        div(class='col-md-12')
+          button(type='submit' class='btn btn-primary') Редагувати
+
+  div(class='breadcrumb')
+    li Видалення станції з колекції
+  form(id='spacestation-delete-form' name='spacestation-add-form' class='form-inline' action='/deleteSpaceStation' method='POST')
+    div(class='')
+      div(class='col-md-3')
+        label(for='') Станція
+      div(class='col-md-6')
+        select(name = 'index')
+          each val, index in dataSpaceStation
+            option= index + '. Назва: ' + val.name + '. Місткість: ' + val.capacity + '. Потреби: ' + val.needs
+        button(type='submit' class='btn btn-primary') Видалити
+        p= info
+
+  div(class='breadcrumb')
+    li Пошук одної станції в колекції
+  form(id='spacestation-find-form' name='spacestation-add-form' class='form-inline' action='/findSpaceStation' method='POST')
+    div(class='')
+      div(class='form-group')
+
+        div(class='col-md-3')
+          label(for='name') Назва
+        div(class='col-md-9')
+          input( name='name' value='' class='form-control')
+
+      div(class='form-group')
+        div(class='col-md-12')
+          button(type='submit' class='btn btn-primary') Пошук
+      p= find
+block append scripts
+  script(src='/static/js/models/shop.js')
+  script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')
+  script(src='/static/js/views/shop.js')
+      
