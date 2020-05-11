@@ -12,9 +12,14 @@ block content
         label(for='name') Назва
       div(class='col-md-9')
         input(id='name' name='name' value='' class='form-control')
+      div(class='form-group')
+      div(class='col-md-3')
+        label(for='name') Назва станції 
+      div(class='col-md-9')
+        input(id='spacestation' name='spacestation' value='' class='form-control') 
     div(class='form-group')
       div(class='col-md-3')
-        label(for='name') Місткість
+        label(for='name') Місткість 
       div(class='col-md-9')
         input(id='capacity' name='capacity' value='' class='form-control') 
     div(class='form-group')
@@ -35,13 +40,18 @@ block content
       div(class='col-md-6')
         select#OurShipEdit(name = 'index')
           each val, index in dataplanet
-            option= index + '. Назва: ' + val.name + '. Місткість: ' + val.capacity + '. Маса: ' + val.mass
+            option= index + '. Назва: ' + val.name + '. Станція: ' + val.spacestation + '. Місткість: ' + val.capacity + '. Маса: ' + val.mass
     div
       div(class='form-group')
         div(class='col-md-3')
           label(for='name') Нова Назва
         div(class='col-md-9')
           input( name='name' value='' class='form-control')
+      div(class='form-group')
+        div(class='col-md-3')
+          label(for='name') Нова Станція
+        div(class='col-md-9')
+          input( name='spacestation' value='' class='form-control')
       div(class='form-group')
         div(class='col-md-3')
           label(for='name') Нова Місткість
@@ -65,7 +75,7 @@ block content
       div(class='col-md-6')
         select(name = 'index')
           each val, index in dataplanet
-            option= index + '. Назва: ' + val.name + '. Місткість: ' + val.capacity + '. Маса: ' + val.mass
+            option= index + '. Назва: ' + val.name + '. Станція: ' + val.spacestation +  '. Місткість: ' + val.capacity + '. Маса: ' + val.mass
         button(type='submit' class='btn btn-primary') Видалити
         p= info
 

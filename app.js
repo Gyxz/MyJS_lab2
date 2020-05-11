@@ -38,8 +38,9 @@ class Goods {
   }
 
 class Planet {
-    constructor(name, capacity, mass,goodsInStorage) {
+    constructor(name, spacestation, capacity, mass,goodsInStorage) {
         this.name = name;
+        this.spacestation = spacestation;
         this.capacity = capacity;
         this.mass = mass;
         this.goodsInStorage = goodsInStorage;
@@ -73,8 +74,8 @@ let spacestation = [new SpaceStation('LPS', 900,'сталь,алюміній', [
  let goods = [new Goods(123,'мясо', 30), new Goods( 987,'яблука',10),
     new Goods(654,'сталь', 10), new Goods( 666,'алюміній',10), new Goods( 1235,'хліб',5)];
 
-let planet = [new Planet('Земля', 600,600000, []), new Planet('LP-321-k', 200,60000000, []),
-    new Planet('OK-098-1', 600,80000000, [])];
+let planet = [new Planet('Земля','LPS', 600,600000, []), new Planet('LP-321-k','PPL' , 200,60000000, []),
+    new Planet('OK-098-1', 'Silpo', 600,80000000, [])];
 
 
 app.get('/', (req, res) => {//render index (home page)
@@ -181,7 +182,7 @@ app.get('/planet', (req, res) => {
 app.post('/addPlanets', (req, res) => {
     let info = req.body;
 
-    planet.push(new Planet(info.name, info.capacity,info.mass, []));
+    planet.push(new Planet(info.name, info.spacestation, info.capacity,info.mass, []));
     res.render('planet', {dataplanet: planet})
 });
 
@@ -190,7 +191,7 @@ app.post('/editPlanets', (req, res) => {
     let info = req.body;
     let index = info.index[0];
 
-    planet[index] = new Planet(info.name, info.capacity,info.mass, []);
+    planet[index] = new Planet(info.name, info.spacestation, info.capacity,info.mass, []);
 
     res.render('planet', {dataplanet: planet})
 });
